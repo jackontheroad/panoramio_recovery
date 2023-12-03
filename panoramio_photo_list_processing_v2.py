@@ -9,10 +9,11 @@ import pandas as pd
 import traceback
 import time
 
+# csv文件名中必须带有user_id的格式像这样 u2304697, 不要添加其他的任何数字
+# csv filename containing user_id like this 'u2304697' is required, do not add other numbers in the filename.
 csv_file = r"d:\code\test\photo_ids_u2304697.csv"
 
 user_id = re.findall(r'\d+', os.path.basename(csv_file))[0]
-
 
 output_file = os.path.join(os.path.dirname(csv_file), f"""photo_list_u{user_id}_v2.csv""")
 
@@ -26,7 +27,8 @@ request_headers = {
     "User-Agent":
     "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/102.0.0.0 Safari/537.36"
 }
-proxies_1 = {"https": "http://127.0.0.1:10809"}
+# proxies_1 = {"https": "http://127.0.0.1:10809"}
+proxies_1 = {}
 proxies_2 = {}
 request_interval = 2  # 2 seconds
 one_or_zero = 0
@@ -36,18 +38,20 @@ start_index = 0
 if os.path.isfile(output_file):
     try:
         df = pd.read_csv(output_file)
-        processed_photo_ids = set(map(str, df["photo_id"]))
         last_line = df.iloc[-1]
         last_in_page = last_line["last_in_page"]
         if int(last_in_page) == 0:
             print("------------error------------")
             print(
-                "Please remove all last page rows in csv. They are not intact and need to be repopulate."
+                "Please remove all rows of last page in csv. They are not intact and need to be repopulated."
             )
             print("请删除csv中最后一页的数据，这页的数据不完整，需要重新下载.")
             sys.exit()
         start_index = int(last_line["with_photo_index"]) + 1
         last_page = last_line["page"]
+        processed_photo_ids = set(map(str, df["photo_id"]))
+    except SystemExit:
+        sys.exit()
     except:
         df = None
 print("-----------start_index-----------"+str(start_index)+"----------------")
@@ -60,7 +64,7 @@ with open(output_file, "a", newline="", encoding="utf-8") as output_file:
         writer.writeheader()
     count = 0
     df = pd.read_csv(csv_file)
-    
+
     for index, row in df.iloc[start_index:].iterrows():
         print("--------------------------------index---last_page----" + str(index) + "-----"+str(last_page)+"--------------")
         photo_id = str(row['photo_id'])
