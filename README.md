@@ -1,4 +1,4 @@
-# panoramio_recovery
+# Panoramio recovery from web archive.   
 Recover Panoramio photos from web archive to KML. 
 
 ## The result of recovery  
