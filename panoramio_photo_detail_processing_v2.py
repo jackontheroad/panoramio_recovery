@@ -96,6 +96,7 @@ with open(output_file, "a", newline="", encoding="utf-8") as output_file:
             tags_text = ""
         try:
             location = soup.find("p", id="place").text.replace("Photo taken in ", "").strip()
+            location = " ".join(location.split())
         except:
             location = ""
         try:
