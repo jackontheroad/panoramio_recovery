@@ -4,22 +4,25 @@ import simplekml
 csv_file = r"d:\code\test\photo_list_u2304697_v2_complete.csv"
 kml_file = csv_file[:-4] + ".kml"
 
-custom_icon_url = "D:/code/resource/shaded_dot.png"
+# custom_icon_url = "D:/code/resource/shaded_dot.png"
 # custom_icon_url = 'http://maps.google.com/mapfiles/kml/shapes/placemark_circle.png'
-# custom_icon_url = 'http://maps.google.com/mapfiles/kml/shapes/shaded_dot.png'
+custom_icon_url = 'http://maps.google.com/mapfiles/kml/shapes/shaded_dot.png'
 icon_color = "ff0000ff"
 df = pd.read_csv(csv_file)
 
 # 创建 KML 对象
+# Create KML Object
 kml = simplekml.Kml()
 
 # 创建样式对象，并设置图标
+# Create style object, and set the icon
 style = simplekml.Style()
 style.iconstyle.icon.href = custom_icon_url
 style.iconstyle.color = icon_color
 style.iconstyle.scale = 0.7
 
 # 遍历 DataFrame 中的每一行，将经纬度添加为 KML 点
+# Iterate over every row in dataframe, and convert lat,lon to the points in KML.
 count = 0
 for index, row in df.iterrows():
     latlon_str = str(row["latlon"])  # 替换为你的纬度列的列名
