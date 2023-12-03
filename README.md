@@ -1,5 +1,6 @@
-# Panoramio recovery from web archive.   
-Recover Panoramio photos from web archive to KML. 
+# Panoramio recovery from the Web Archive.   
+Recover Panoramio photos from the Web Archive to KML.   
+[Detailed Tutorial on Medium.](https://medium.com/jackontheroad-en/rescuing-panoramio-memories-how-to-restore-panoramio-photos-9c80267fe978)
 
 ## The result of recovery  
 
