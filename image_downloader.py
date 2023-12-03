@@ -8,6 +8,10 @@ import pandas as pd
 import time
 import traceback
 
+# Read image URLs from the CSV file using pandas
+csv_file_path = r"d:\code\panoramio\photo_list_u2304697_v2_complete.csv"
+# Define the folder path for saving images
+save_folder = r"d:\code\panoramio\photo_thumbnails"
 # proxies_1 = {"https": "http://127.0.0.1:10809"}
 proxies_1 = {}
 proxies_2 = {}
@@ -68,17 +72,12 @@ def download_image(index, url, save_folder):
 
 
 if __name__ == "__main__":
-    # Read image URLs from the CSV file using pandas
-    csv_file_path = r"d:\code\panoramio\photo_list_u2304697_v2_complete.csv"
     df = pd.read_csv(csv_file_path)
-
-    # Define the folder path for saving images
-    save_folder = r"d:\code\panoramio\photo_thumbnails"
-
     # Iterate over each row in the DataFrame
     for index, row in df.iterrows():
         # Get the image URL
-        image_url = row['thumbnail_url']  # Replace with the actual column name
+        image_url = row['photo_url']
+        # image_url = row['thumbnail_url']
 
         # Download and save the image if the URL is not empty or NaN
         download_image(index, image_url, save_folder)
