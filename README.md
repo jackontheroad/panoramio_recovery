@@ -11,6 +11,6 @@ Recover Panoramio photos from the Web Archive to KML.
 ![screenshot](./screenshots/panoramio_recovery_google_earth.png)
 ![screenshot](./screenshots/panoramio_recovery2_google_earth.png)  
 
-## The original Panoramio user page of a global bikepacker with more than 10,000 photos
+## The original Panoramio user page of a global bike-packing traveler with more than 10,000 photos
 
 ![screenshot](./screenshots/panoramio_user_page_bikepacker.PNG)
